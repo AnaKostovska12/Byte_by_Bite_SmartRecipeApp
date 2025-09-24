@@ -1,0 +1,61 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django stuff
+*.log
+*.pot
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# Environment variables
+*.env
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*~
+
+# Packaging
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Node / npm (if Bootstrap/JS used with npm)
+node_modules/
+package-lock.json
+npm-debug.log
+yarn-error.log
+
+# OS files
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+
+# Django
+db.sqlite3
+/staticfiles/
+/media/
+
+# Virtual env
+venv/
+.env

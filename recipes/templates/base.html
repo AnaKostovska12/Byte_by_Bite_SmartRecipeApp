@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Smart Recipe</title>
+
+  <!-- Your static Bootstrap -->
+  <link rel="stylesheet" href="{% static 'recipes/css/bootstrap.css' %}">
+  
+  <!-- Optional CDN Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    .form-check-input:checked {
+      background-color: #28a745;
+      border-color: #28a745;
+    }
+    .form-check-input:focus {
+      box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+    }
+  </style>
+</head>
+
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffbd59;">
+  <div class="container-fluid">
+    <a class="navbar-brand mx-auto mx-lg-0 mb-2 mb-lg-0" href="#">
+      <img src="{% static 'recipes/images/logo (3).png' %}" alt="Byte to Bite Logo" 
+           width="140" height="60" class="me-3">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
+            aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
+      <ul class="navbar-nav d-flex flex-column flex-lg-row align-items-center align-items-lg-center gap-2 gap-lg-3 mb-2 mb-lg-0 me-lg-auto justify-content-center justify-content-lg-start w-100 w-lg-auto">
+        <li class="nav-item">
+          <a class="btn btn-success opacity-75 py-2 px-5" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-success opacity-75 py-2 px-5" href="{% url 'tips' %}">Tips</a>
+        </li>
+      </ul>
+
+      <form class="d-flex mt-2 mt-lg-0 ms-lg-3 justify-content-center justify-content-lg-end w-100 w-lg-auto" role="search" method="get" action="{% url 'get_recipes' %}">
+        <input class="form-control me-2 bg-white" type="search" name="query" placeholder="Search" aria-label="Search"
+               style="max-width: 250px;" value="{{ query|default:'' }}">
+        <button class="btn btn-outline-success custom-green-outline px-4 py-2" type="submit">Search</button>
+      </form>
+
+    </div>
+  </div>
+</nav>
+
+
+<div class="container mt-4">
+  {% block content %}
+  {% endblock %}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<button type="button" onclick="scrollToTop()" id="scrollTopBtn" title="Go to top">
+  <i class="bi bi-arrow-up-circle-fill"></i>
+</button>
+
+
+<style>
+  #scrollTopBtn {
+    display: none; 
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100;  
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    font-size: 3rem; 
+    color: #198754;
+    transition: opacity 0.3s, color 0.3s;
+    opacity: 0;
+  }
+
+  #scrollTopBtn.show {
+    display: block;
+    opacity: 1;
+  }
+
+  #scrollTopBtn:hover {
+    color: #218838;
+  }
+</style>
+
+<script>
+  const scrollBtn = document.getElementById("scrollTopBtn");
+
+  window.addEventListener("scroll", () => {
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      scrollBtn.classList.add("show");
+    } else {
+      scrollBtn.classList.remove("show");
+    }
+  });
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+ {% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="border rounded bg-light p-3 overflow-auto" style="max-height: 90vh; position: sticky; top: 1rem;">
+        <h4>Included Ingredients</h4>
+        {% if ingredients %}
+          {% for ingredient in ingredients %}
+            <div class="form-check">
+              <input class="form-check-input bg-success border-success" type="checkbox" value="{{ ingredient }}" id="ingredient_{{ forloop.counter }}" checked disabled>
+              <label class="form-check-label" for="ingredient_{{ forloop.counter }}">
+                {{ ingredient }}
+              </label>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>No ingredients selected.</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="col-md-9">
+      
+    
+<form method="get" class="d-flex align-items-center mb-4">
+  <input type="hidden" name="query" value="{{ request.GET.query }}">
+  
+  <label for="sort" class="form-label fw-bold me-2 mb-0">Sort by:</label>
+  <select name="sort" id="sort" class="form-select w-auto me-3" onchange="this.form.submit()">
+    <option value="">-- Select --</option>
+    <option value="popularity" {% if sort == 'popularity' %}selected{% endif %}>Popularity</option>
+    <option value="calories" {% if sort == 'calories' %}selected{% endif %}>Calories</option>
+    <option value="price" {% if sort == 'price' %}selected{% endif %}>Price</option>
+    <option value="healthiness" {% if sort == 'healthiness' %}selected{% endif %}>Healthiness</option>
+    <option value="protein" {% if sort == 'protein' %}selected{% endif %}>Protein Intake</option>
+  </select>
+
+  <noscript><button type="submit" class="btn btn-primary">Sort</button></noscript>
+  <a href="{% url 'home' %}" class="btn btn-outline-secondary">← Back</a>
+</form>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% if recipes %}
+         
+          {% for recipe in recipes %}
+     <div class="col">
+        <a href="{% url 'recipe_detail' recipe.id %}" class="text-decoration-none text-dark">
+       <div class="card h-100">
+        <img src="{{ recipe.image }}" class="card-img-top" alt="{{ recipe.title }}">
+        <div class="card-body position-relative">
+          <h5 class="card-title">{{ recipe.title }}</h5>
+          <p class="card-text">
+            Prep time: 
+            {% if recipe.readyInMinutes %}
+              {{ recipe.readyInMinutes }} min
+            {% else %}
+              N/A
+            {% endif %}
+          </p>
+          <span class="stretched-link"></span>
+          </div>
+         </div>
+        </a>
+     </div>
+        {% endfor %}
+        {% else %}
+          <p>No recipes found.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} 

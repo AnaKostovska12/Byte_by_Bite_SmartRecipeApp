@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container my-4">
+  <div class="row">
+    <div class="col-12 col-lg-3 order-1 order-lg-2 mb-4 mb-lg-0">
+    <a href="javascript:history.back()" class="btn btn-outline-secondary my-4">
+      ← Back 
+    </a>
+
+      <div class="card shadow-sm sticky-top" style="top: 1rem; max-height: 85vh; overflow-y: auto; background-color: #eef7f0;">
+        <div class="card-body">
+          <h4 class="card-title" style="color:#2e6049;">Ingredients</h4>
+          <ul class="list-unstyled mb-0" style="color:#3d6655; font-size:1rem; line-height:1.6;">
+            {% if recipe.extendedIngredients %}
+              {% for ingredient in recipe.extendedIngredients %}
+                <li class="mb-2">• {{ ingredient.original }}</li>
+              {% endfor %}
+            {% else %}
+              <li>No ingredients found.</li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recipe Card -->
+    <div class="col-12 col-lg-9 order-2 order-lg-1">
+      <div class="card shadow-sm mb-4">
+        {% if recipe.image %}
+        <img src="{{ recipe.image }}" class="card-img-top rounded-top" alt="{{ recipe.title }}" style="object-fit: cover; width: 100%; max-height: 420px;">
+        {% endif %}
+        <div class="card-body">
+          <h3 class="card-title">{{ recipe.title }}</h3>
+          <h6 class="card-subtitle mb-3 text-muted">
+            Prep time: {{ recipe.readyInMinutes }} minutes | Servings: {{ recipe.servings }}
+          </h6>
+
+          <!-- Dietary Labels -->
+          <div class="mb-3">
+            {% if recipe.vegan %}
+              <span class="badge rounded-pill" style="background-color:#7ed957; font-size:1rem;">🌱 Vegan</span>
+            {% endif %}
+            {% if recipe.vegetarian %}
+              <span class="badge rounded-pill" style="background-color:#ffc107; font-size:1rem; color:#000;">🥕 Vegetarian</span>
+            {% endif %}
+            {% if recipe.glutenFree %}
+              <span class="badge rounded-pill" style="background-color:#ff9800; font-size:1rem;">🚫🌾 Gluten Free</span>
+            {% endif %}
+            {% if recipe.dairyFree %}
+              <span class="badge rounded-pill" style="background-color:#7ed957; font-size:1rem;">🥛❌ Dairy Free</span>
+            {% endif %}
+          </div>
+
+          <h5>Preparation Instructions:</h5>
+          {% if recipe.instructions %}
+            <p class="card-text">{{ recipe.instructions|safe }}</p>
+          {% else %}
+            <p class="card-text">No instructions available.</p>
+          {% endif %}
+        </div>
+      </div>
+
+  
+      {% if recipe.nutrition %}
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Nutrition Facts (per serving)</h5>
+          <table class="table table-borderless align-middle mb-0">
+            <tbody>
+              <tr style="background-color:#ffe0db;">
+                <td><strong>Calories</strong></td>
+                <td class="text-end">{{ recipe.nutrition.nutrients.0.amount }} kcal</td>
+              </tr>
+              <tr style="background-color:#d6f5d6;">
+                <td><strong>Protein</strong></td>
+                <td class="text-end">{{ recipe.nutrition.nutrients.1.amount }} g</td>
+              </tr>
+              <tr style="background-color:#fff7d6;">
+                <td><strong>Carbs</strong></td>
+                <td class="text-end">{{ recipe.nutrition.nutrients.3.amount }} g</td>
+              </tr>
+              <tr style="background-color:#ffe9cc;">
+                <td><strong>Fat</strong></td>
+                <td class="text-end">{{ recipe.nutrition.nutrients.2.amount }} g</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}

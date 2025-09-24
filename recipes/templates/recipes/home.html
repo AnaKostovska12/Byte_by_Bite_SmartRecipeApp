@@ -1,0 +1,1174 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% if error %}
+<div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+  {{ error }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+<form method="POST" action="{% url 'get_recipes' %}">
+  {% csrf_token %}
+<div class="d-flex justify-content-center mt-5 mb-4">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="d-flex justify-content-between align-items-center gap-4">
+
+          <button type="submit" name="action" value="random" class="btn flex-grow-1 fw-semibold fs-5 rounded-pill border border-warning 
+                         text-dark px-4 py-3"
+                  style="background: linear-gradient(to right, #ffc107, #ffab00);
+                         box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+                         transition: all 0.3s ease;
+                         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            <i class="fas fa-bolt me-2"></i>Going to the store? Try this random recipe!
+          </button>
+          <button type="submit" name="action" value="custom" class="btn flex-grow-1 fw-semibold fs-5 rounded-pill text-white 
+                       px-4 py-3"
+                  style="background: linear-gradient(to right, #79c18b, #198754);
+                         box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+                         transition: all 0.3s ease;
+                         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            <i class="fas fa-magic me-2"></i>Generate Recipe
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container mt-4">
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="bg-light p-4 rounded h-100" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <h3 class="mb-3 text-dark">Bread</h3>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="bread" id="bread" />
+          <label class="form-check-label" for="bread">bread</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="corn tortillas" id="cornTortillas" />
+          <label class="form-check-label" for="cornTortillas">corn tortillas</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="flour tortillas" id="flourTortillas" />
+          <label class="form-check-label" for="flourTortillas">flour tortillas</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="italian bread" id="italianBread" />
+          <label class="form-check-label" for="italianBread">italian bread</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="pizza crust" id="pizzaCrust" />
+          <label class="form-check-label" for="pizzaCrust">pizza crust</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="tortillas" id="tortillas" />
+          <label class="form-check-label" for="tortillas">tortillas</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="white bread" id="whiteBread" />
+          <label class="form-check-label" for="whiteBread">white bread</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="bg-light p-4 rounded h-100" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <h3 class="mb-3 text-dark">Beverages</h3>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="beer" id="beer" />
+          <label class="form-check-label text-dark" for="beer">beer</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="red wine" id="redWine" />
+          <label class="form-check-label text-dark" for="redWine">red wine</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="vodka" id="vodka" />
+          <label class="form-check-label text-dark" for="vodka">vodka</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="whiskey" id="whiskey" />
+          <label class="form-check-label text-dark" for="whiskey">whiskey</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="coffee" id="coffee" />
+          <label class="form-check-label text-dark" for="coffee">coffee</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="orange juice" id="orangeJuice" />
+          <label class="form-check-label text-dark" for="orangeJuice">orange juice</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="coconut water" id="coconutWater" />
+          <label class="form-check-label text-dark" for="coconutWater">coconut water</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="ginger ale" id="gingerAle" />
+          <label class="form-check-label text-dark" for="gingerAle">ginger ale</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="grape juice" id="grapeJuice" />
+          <label class="form-check-label text-dark" for="grapeJuice">grape juice</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-6">
+      <div class="bg-light p-4 rounded h-100" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <h3 class="mb-3 text-dark">Canned Products</h3>
+        <div class="row">
+          <!-- First column of checkboxes -->
+          <div class="col-6">
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="beef broth" id="beefBroth" />
+              <label class="form-check-label text-dark" for="beefBroth">beef broth</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="beef stock" id="beefStock" />
+              <label class="form-check-label text-dark" for="beefStock">beef stock</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="canned black beans" id="cannedBlackBeans" />
+              <label class="form-check-label text-dark" for="cannedBlackBeans">canned black beans</label>
+            </div>
+
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="canned garbanzo beans" id="cannedGarbanzoBeans" />
+              <label class="form-check-label text-dark" for="cannedGarbanzoBeans">canned garbanzo beans</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="canned green chiles" id="cannedGreenChiles" />
+              <label class="form-check-label text-dark" for="cannedGreenChiles">canned green chiles</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="canned kidney beans" id="cannedKidneyBeans" />
+              <label class="form-check-label text-dark" for="cannedKidneyBeans">canned kidney beans</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="canned mushrooms" id="cannedMushrooms" />
+              <label class="form-check-label text-dark" for="cannedMushrooms">canned mushrooms</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="canned pinto beans" id="cannedPintoBeans" />
+              <label class="form-check-label text-dark" for="cannedPintoBeans">canned pinto beans</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="canned tomatoes" id="cannedTomatoes" />
+              <label class="form-check-label text-dark" for="cannedTomatoes">canned tomatoes</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="canned tuna" id="cannedTuna" />
+              <label class="form-check-label text-dark" for="cannedTuna">canned tuna</label>
+            </div>
+          </div>
+
+          <!-- Second column of checkboxes -->
+          <div class="col-6"> 
+              
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="canned white beans" id="cannedWhiteBeans" />
+              <label class="form-check-label text-dark" for="cannedWhiteBeans">canned white beans</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="coconut milk" id="coconutMilk" />
+              <label class="form-check-label text-dark" for="coconutMilk">coconut milk</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="pumpkin puree" id="pumpkinPuree" />
+              <label class="form-check-label text-dark" for="pumpkinPuree">pumpkin puree</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="tomato paste" id="tomatoPaste" />
+              <label class="form-check-label text-dark" for="tomatoPaste">tomato paste</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="tomato sauce" id="tomatoSauce" />
+              <label class="form-check-label text-dark" for="tomatoSauce">tomato sauce</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="tomato soup" id="tomatoSoup" />
+              <label class="form-check-label text-dark" for="tomatoSoup">tomato soup</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="canned corn" id="cannedCorn" />
+              <label class="form-check-label text-dark" for="cannedCorn">canned corn</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="canned pumpkin" id="cannedPumpkin" />
+              <label class="form-check-label text-dark" for="cannedPumpkin">canned pumpkin</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="canned salmon" id="cannedSalmon" />
+              <label class="form-check-label text-dark" for="cannedSalmon">canned salmon</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="vegetable broth" id="vegetableBroth" />
+              <label class="form-check-label text-dark" for="vegetableBroth">vegetable broth</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="bg-light p-4 rounded h-100" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <h3 class="mb-3 text-dark">Condiments</h3>
+        <div class="row">
+          <!-- First column of checkboxes -->
+          <div class="col-6">
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="bbq sauce" id="bbqSauce" />
+              <label class="form-check-label text-dark" for="bbqSauce">bbq sauce</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="capers" id="capers" />
+              <label class="form-check-label text-dark" for="capers">capers</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="hot sauce" id="hotSauce" />
+              <label class="form-check-label text-dark" for="hotSauce">hot sauce</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="hummus" id="hummus" />
+              <label class="form-check-label text-dark" for="hummus">hummus</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="ketchup" id="ketchup" />
+              <label class="form-check-label text-dark" for="ketchup">ketchup</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="marinara sauce" id="marinaraSauce" />
+              <label class="form-check-label text-dark" for="marinaraSauce">marinara sauce</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="mayonnaise" id="mayonnaise" />
+              <label class="form-check-label text-dark" for="mayonnaise">mayonnaise</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="mustard" id="mustard" />
+              <label class="form-check-label text-dark" for="mustard">mustard</label>
+            </div>
+          
+          </div>
+
+          <!-- Second column of checkboxes -->
+          <div class="col-6">
+         <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="pasta sauce" id="pastaSauce" />
+              <label class="form-check-label text-dark" for="pastaSauce">pasta sauce</label>
+            </div>
+            <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" name="ingredients" value="pickles" id="pickles" />
+            <label class="form-check-label text-dark" for="pickles">pickles</label>
+          </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="ranch dressing" id="ranchDressing" />
+              <label class="form-check-label text-dark" for="ranchDressing">ranch dressing</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="salsa" id="salsa" />
+              <label class="form-check-label text-dark" for="salsa">salsa</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="soy sauce" id="soySauce" />
+              <label class="form-check-label text-dark" for="soySauce">soy sauce</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="tahini" id="tahini" />
+              <label class="form-check-label text-dark" for="tahini">tahini</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="worcestershire sauce" id="worcestershireSauce" />
+              <label class="form-check-label text-dark" for="worcestershireSauce">worcestershire sauce</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="horseradish" id="horseradish" />
+              <label class="form-check-label text-dark" for="horseradish">horseradish</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="bg-light p-4 rounded h-100" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <h3 class="mb-3 text-dark">Ingredients (Spices, Herbs, Essentials)</h3>
+        <div class="row">
+          <!-- First column of checkboxes -->
+          <div class="col-6">
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="baking powder" id="bakingPowder" />
+              <label class="form-check-label text-dark" for="bakingPowder">baking powder</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="baking soda" id="bakingSoda" />
+              <label class="form-check-label text-dark" for="bakingSoda">baking soda</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="bay leaves" id="bayLeaves" />
+              <label class="form-check-label text-dark" for="bayLeaves">bay leaves</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="black pepper" id="blackPepper" />
+              <label class="form-check-label text-dark" for="blackPepper">black pepper</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="baking chocolate" id="bakingChocolate" />
+              <label class="form-check-label text-dark" for="bakingChocolate">baking chocolate</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="chili powder" id="chiliPowder" />
+              <label class="form-check-label text-dark" for="chiliPowder">chili powder</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="cinnamon stick" id="cinnamonStick" />
+              <label class="form-check-label text-dark" for="cinnamonStick">cinnamon stick</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="cloves" id="cloves" />
+              <label class="form-check-label text-dark" for="cloves">cloves</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="cornstarch" id="cornstarch" />
+              <label class="form-check-label text-dark" for="cornstarch">cornstarch</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="cumin seeds" id="cuminSeeds" />
+              <label class="form-check-label text-dark" for="cuminSeeds">cumin seeds</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="curry powder" id="curryPowder" />
+              <label class="form-check-label text-dark" for="curryPowder">curry powder</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="dill" id="dill" />
+              <label class="form-check-label text-dark" for="dill">dill</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="dried basil" id="driedBasil" />
+              <label class="form-check-label text-dark" for="driedBasil">dried basil</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="dried oregano" id="driedOregano" />
+              <label class="form-check-label text-dark" for="driedOregano">dried oregano</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="dried thyme" id="driedThyme" />
+              <label class="form-check-label text-dark" for="driedThyme">dried thyme</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="flour" id="flour" />
+              <label class="form-check-label text-dark" for="flour">flour</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="garlic powder" id="garlicPowder" />
+              <label class="form-check-label text-dark" for="garlicPowder">garlic powder</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="ground cinnamon" id="groundCinnamon" />
+              <label class="form-check-label text-dark" for="groundCinnamon">ground cinnamon</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="ground cumin" id="groundCumin" />
+              <label class="form-check-label text-dark" for="groundCumin">ground cumin</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="ground ginger" id="groundGinger" />
+              <label class="form-check-label text-dark" for="groundGinger">ground ginger</label>
+            </div>
+            <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" name="ingredients" value="honey" id="honey" />
+            <label class="form-check-label text-dark" for="honey">honey</label>
+          </div>
+          </div>
+
+          <!-- Second column of checkboxes -->
+          <div class="col-6">
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="italian seasoning" id="italianSeasoning" />
+              <label class="form-check-label text-dark" for="italianSeasoning">italian seasoning</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="kosher salt" id="kosherSalt" />
+              <label class="form-check-label text-dark" for="kosherSalt">kosher salt</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="maple syrup" id="mapleSyrup" />
+              <label class="form-check-label text-dark" for="mapleSyrup">maple syrup</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="molasses" id="molasses" />
+              <label class="form-check-label text-dark" for="molasses">molasses</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="nutmeg" id="nutmeg" />
+              <label class="form-check-label text-dark" for="nutmeg">nutmeg</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="onion powder" id="onionPowder" />
+              <label class="form-check-label text-dark" for="onionPowder">onion powder</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="oregano" id="oregano" />
+              <label class="form-check-label text-dark" for="oregano">oregano</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="parsley" id="parsley" />
+              <label class="form-check-label text-dark" for="parsley">parsley</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="rosemary" id="rosemary" />
+              <label class="form-check-label text-dark" for="rosemary">rosemary</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="sage" id="sage" />
+              <label class="form-check-label text-dark" for="sage">sage</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="salt" id="salt" />
+              <label class="form-check-label text-dark" for="salt">salt</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="sea salt" id="seaSalt" />
+              <label class="form-check-label text-dark" for="seaSalt">sea salt</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="smoked paprika" id="smokedPaprika" />
+              <label class="form-check-label text-dark" for="smokedPaprika">smoked paprika</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="sugar" id="sugar" />
+              <label class="form-check-label text-dark" for="sugar">sugar</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="thyme" id="thyme" />
+              <label class="form-check-label text-dark" for="thyme">thyme</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="vanilla extract" id="vanillaExtract" />
+              <label class="form-check-label text-dark" for="vanillaExtract">vanilla extract</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="yeast" id="yeast" />
+              <label class="form-check-label text-dark" for="yeast">yeast</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="agave nectar" id="agaveNectar" />
+              <label class="form-check-label text-dark" for="agaveNectar">agave nectar</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="almond extract" id="almondExtract" />
+              <label class="form-check-label text-dark" for="almondExtract">almond extract</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="powdered sugar" id="powderedSugar" />
+              <label class="form-check-label text-dark" for="powderedSugar">powdered sugar</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="bg-light p-4 rounded h-100" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <h3 class="mb-3 text-dark">Dairy</h3>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="butter" id="butter" />
+          <label class="form-check-label text-dark" for="butter">butter</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="buttermilk" id="buttermilk" />
+          <label class="form-check-label text-dark" for="buttermilk">buttermilk</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="cheddar" id="cheddar" />
+          <label class="form-check-label text-dark" for="cheddar">cheddar</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="cheese" id="cheese" />
+          <label class="form-check-label text-dark" for="cheese">cheese</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="cottage cheese" id="cottageCheese" />
+          <label class="form-check-label text-dark" for="cottageCheese">cottage cheese</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="cream cheese" id="creamCheese" />
+          <label class="form-check-label text-dark" for="creamCheese">cream cheese</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="dry milk" id="dryMilk" />
+          <label class="form-check-label text-dark" for="dryMilk">dry milk</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="eggs" id="eggs" />
+          <label class="form-check-label text-dark" for="eggs">eggs</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="evaporated milk" id="evaporatedMilk" />
+          <label class="form-check-label text-dark" for="evaporatedMilk">evaporated milk</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="ice cream" id="iceCream" />
+          <label class="form-check-label text-dark" for="iceCream">ice cream</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="margarine" id="margarine" />
+          <label class="form-check-label text-dark" for="margarine">margarine</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="milk" id="milk" />
+          <label class="form-check-label text-dark" for="milk">milk</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="monterrey jack cheese" id="monterreyJackCheese" />
+          <label class="form-check-label text-dark" for="monterreyJackCheese">monterrey jack cheese</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="mozzarella" id="mozzarella" />
+          <label class="form-check-label text-dark" for="mozzarella">mozzarella</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="plain greek yogurt" id="plainGreekYogurt" />
+          <label class="form-check-label text-dark" for="plainGreekYogurt">plain greek yogurt</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="provolone cheese" id="provoloneCheese" />
+          <label class="form-check-label text-dark" for="provoloneCheese">provolone cheese</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="ricotta cheese" id="ricottaCheese" />
+          <label class="form-check-label text-dark" for="ricottaCheese">ricotta cheese</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="sour cream" id="sourCream" />
+          <label class="form-check-label text-dark" for="sourCream">sour cream</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="swiss cheese" id="swissCheese" />
+          <label class="form-check-label text-dark" for="swissCheese">swiss cheese</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="whole milk" id="wholeMilk" />
+          <label class="form-check-label text-dark" for="wholeMilk">whole milk</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="yogurt" id="yogurt" />
+          <label class="form-check-label text-dark" for="yogurt">yogurt</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="cream" id="cream" />
+          <label class="form-check-label text-dark" for="cream">cream</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="bg-light p-4 rounded h-100" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <h3 class="mb-3 text-dark">Pasta / Grains</h3>
+        <div class="row">
+          <!-- First column -->
+          <div class="col-6">
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="basmati rice" id="basmatiRice" />
+              <label class="form-check-label text-dark" for="basmatiRice">basmati rice</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="beans" id="beans" />
+              <label class="form-check-label text-dark" for="beans">beans</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="black beans" id="blackBeans" />
+              <label class="form-check-label text-dark" for="blackBeans">black beans</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="brown rice" id="brownRice" />
+              <label class="form-check-label text-dark" for="brownRice">brown rice</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="chickpea" id="chickpea" />
+              <label class="form-check-label text-dark" for="chickpea">chickpea</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="corn flour" id="cornFlour" />
+              <label class="form-check-label text-dark" for="cornFlour">corn flour</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="couscous" id="couscous" />
+              <label class="form-check-label text-dark" for="couscous">couscous</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="elbow macaroni" id="elbowMacaroni" />
+              <label class="form-check-label text-dark" for="elbowMacaroni">elbow macaroni</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="jasmine rice" id="jasmineRice" />
+              <label class="form-check-label text-dark" for="jasmineRice">jasmine rice</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="lasagna noodles" id="lasagnaNoodles" />
+              <label class="form-check-label text-dark" for="lasagnaNoodles">lasagna noodles</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="linguine" id="linguine" />
+              <label class="form-check-label text-dark" for="linguine">linguine</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="oats" id="oats" />
+              <label class="form-check-label text-dark" for="oats">oats</label>
+            </div>
+           
+          </div>
+
+          <!-- Second column -->
+          <div class="col-6">
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" name="ingredients" value="pasta" id="pasta" />
+            <label class="form-check-label text-dark" for="pasta">pasta</label>
+          </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="pinto beans" id="pintoBeans" />
+              <label class="form-check-label text-dark" for="pintoBeans">pinto beans</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="polenta" id="polenta" />
+              <label class="form-check-label text-dark" for="polenta">polenta</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="quinoa" id="quinoa" />
+              <label class="form-check-label text-dark" for="quinoa">quinoa</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="rice" id="rice" />
+              <label class="form-check-label text-dark" for="rice">rice</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="spaghetti" id="spaghetti" />
+              <label class="form-check-label text-dark" for="spaghetti">spaghetti</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="wheat flour" id="wheatFlour" />
+              <label class="form-check-label text-dark" for="wheatFlour">wheat flour</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="white rice" id="whiteRice" />
+              <label class="form-check-label text-dark" for="whiteRice">white rice</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="egg noodles" id="eggNoodles" />
+              <label class="form-check-label text-dark" for="eggNoodles">egg noodles</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="cornmeal" id="cornmeal" />
+              <label class="form-check-label text-dark" for="cornmeal">cornmeal</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="lentils" id="lentils" />
+              <label class="form-check-label text-dark" for="lentils">lentils</label>
+            </div>
+            <div class="form-check mb-4">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="kidney beans" id="kidneyBeans" />
+              <label class="form-check-label text-dark" for="kidneyBeans">kidney beans</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="bg-light p-4 rounded h-100" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <h3 class="mb-3 text-dark">Meats</h3>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="beef" id="beef" />
+          <label class="form-check-label text-dark" for="beef">beef</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="beef tenderloin" id="beefTenderLoin" />
+          <label class="form-check-label text-dark" for="beefTenderLoin">beef tenderloin</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="beef brisket" id="beefBrisket" />
+          <label class="form-check-label text-dark" for="beefBrisket">beef brisket</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="chicken wings" id="chickenWings" />
+          <label class="form-check-label text-dark" for="chickenWings"> chicken wings</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="chicken drumsticks" id="chickenDrumsticks" />
+          <label class="form-check-label text-dark" for="chickenDrumsticks">chicken drumsticks</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="chicken breasts" id="chickenBreasts" />
+          <label class="form-check-label text-dark" for="chickenBreasts">chicken breasts</label>
+        </div>
+
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="chicken legs" id="chickenLegs" />
+          <label class="form-check-label text-dark" for="chickenLegs">chicken legs</label>
+        </div>
+        <div class="form-check mb-4">
+        <input class="form-check-input" type="checkbox" name="ingredients" value="turkey" id="turkey" />
+        <label class="form-check-label text-dark" for="turkey">turkey</label>
+      </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="ground beef" id="groundBeef" />
+          <label class="form-check-label text-dark" for="groundBeef">ground beef</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="ground pork" id="groundPork" />
+          <label class="form-check-label text-dark" for="groundPork">ground pork</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="ground turkey" id="groundTurkey" />
+          <label class="form-check-label text-dark" for="groundTurkey">ground turkey</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="pork" id="pork" />
+          <label class="form-check-label text-dark" for="pork">pork</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="pork belly" id="porkBelly" />
+          <label class="form-check-label text-dark" for="porkBelly">pork belly</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="pork chops" id="porkChops" />
+          <label class="form-check-label text-dark" for="porkChops">pork chops</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="sausage" id="sausage" />
+          <label class="form-check-label text-dark" for="sausage">sausage</label>
+        </div>
+
+      </div>
+    </div>
+
+<div class="col-md-6">
+      <div class="bg-light p-4 rounded h-100" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <h3 class="mb-3 text-dark">Produce (Fresh Fruits &amp; Vegetables)</h3>
+        <div class="row">
+          <!-- First column of checkboxes -->
+          <div class="col-6">
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="banana" id="banana" />
+              <label class="form-check-label text-dark" for="banana">banana</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="bell pepper" id="bellPepper" />
+              <label class="form-check-label text-dark" for="bellPepper">bell pepper</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="blueberries" id="blueberries" />
+              <label class="form-check-label text-dark" for="blueberries">blueberries</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="broccoli" id="broccoli" />
+              <label class="form-check-label text-dark" for="broccoli">broccoli</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="cabbage" id="cabbage" />
+              <label class="form-check-label text-dark" for="cabbage">cabbage</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="carrots" id="carrots" />
+              <label class="form-check-label text-dark" for="carrots">carrots</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="cauliflower" id="cauliflower" />
+              <label class="form-check-label text-dark" for="cauliflower">cauliflower</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="celery" id="celery" />
+              <label class="form-check-label text-dark" for="celery">celery</label>
+            </div>
+             <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="cucumber" id="cucumber" />
+              <label class="form-check-label text-dark" for="cucumber">cucumber</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="corn" id="corn" />
+              <label class="form-check-label text-dark" for="corn">corn</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="cranberries" id="cranberries" />
+              <label class="form-check-label text-dark" for="cranberries">cranberries</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="dates" id="dates" />
+              <label class="form-check-label text-dark" for="dates">dates</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="garlic" id="garlic" />
+              <label class="form-check-label text-dark" for="garlic">garlic</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="ginger" id="ginger" />
+              <label class="form-check-label text-dark" for="ginger">ginger</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="green beans" id="greenBeans" />
+              <label class="form-check-label text-dark" for="greenBeans">green beans</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="green onions" id="greenOnions" />
+              <label class="form-check-label text-dark" for="greenOnions">green onions</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="lemon" id="lemon" />
+              <label class="form-check-label text-dark" for="lemon">lemon</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="lettuce" id="lettuce" />
+              <label class="form-check-label text-dark" for="lettuce">lettuce</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="lime" id="lime" />
+              <label class="form-check-label text-dark" for="lime">lime</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="mushrooms" id="mushrooms" />
+              <label class="form-check-label text-dark" for="mushrooms">mushrooms</label>
+            </div>  <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" name="ingredients" value="onion" id="onion" />
+            <label class="form-check-label text-dark" for="onion">onion</label>
+          </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="orange" id="orange" />
+              <label class="form-check-label text-dark" for="orange">orange</label>
+            </div>
+               <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="potatoes" id="potatoes" />
+              <label class="form-check-label text-dark" for="potatoes">potatoes</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="parsley" id="parsley" />
+              <label class="form-check-label text-dark" for="parsley">parsley</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="peas" id="peas" />
+              <label class="form-check-label text-dark" for="peas">peas</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="pineapple" id="pineapple" />
+              <label class="form-check-label text-dark" for="pineapple">pineapple</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="radishes" id="radishes" />
+              <label class="form-check-label text-dark" for="radishes">radishes</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="raspberries" id="raspberries" />
+              <label class="form-check-label text-dark" for="raspberries">raspberries</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="red bell peppers" id="redBellPeppers" />
+              <label class="form-check-label text-dark" for="redBellPeppers">red bell peppers</label>
+            </div>
+          
+          
+          </div>
+
+          <!-- Second column of checkboxes -->
+          <div class="col-6">  
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="red onion" id="redOnion" />
+              <label class="form-check-label text-dark" for="redOnion">red onion</label>
+            </div>
+          <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="red potatoes" id="redPotatoes" />
+              <label class="form-check-label text-dark" for="redPotatoes">red potatoes</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="romaine lettuce" id="romaineLettuce" />
+              <label class="form-check-label text-dark" for="romaineLettuce">romaine lettuce</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="scallions" id="scallions" />
+              <label class="form-check-label text-dark" for="scallions">scallions</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="shallots" id="shallots" />
+              <label class="form-check-label text-dark" for="shallots">shallots</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="snap peas" id="snapPeas" />
+              <label class="form-check-label text-dark" for="snapPeas">snap peas</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="spinach" id="spinach" />
+              <label class="form-check-label text-dark" for="spinach">spinach</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="squash" id="squash" />
+              <label class="form-check-label text-dark" for="squash">squash</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="strawberries" id="strawberries" />
+              <label class="form-check-label text-dark" for="strawberries">strawberries</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="sweet corn" id="sweetCorn" />
+              <label class="form-check-label text-dark" for="sweetCorn">sweet corn</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="sweet potatoes" id="sweetPotatoes" />
+              <label class="form-check-label text-dark" for="sweetPotatoes">sweet potatoes</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="tomatoes" id="tomatoes" />
+              <label class="form-check-label text-dark" for="tomatoes">tomatoes</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="zucchini" id="zucchini" />
+              <label class="form-check-label text-dark" for="zucchini">zucchini</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="apple" id="apple" />
+              <label class="form-check-label text-dark" for="apple">apple</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="apricot" id="apricot" />
+              <label class="form-check-label text-dark" for="apricot">apricot</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="asparagus" id="asparagus" />
+              <label class="form-check-label text-dark" for="asparagus">asparagus</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="blackberries" id="blackberries" />
+              <label class="form-check-label text-dark" for="blackberries">blackberries</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="bok choy" id="bokChoy" />
+              <label class="form-check-label text-dark" for="bokChoy">bok choy</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="brussels sprouts" id="brusselsSprouts" />
+              <label class="form-check-label text-dark" for="brusselsSprouts">brussels sprouts</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="butternut squash" id="butternutSquash" />
+              <label class="form-check-label text-dark" for="butternutSquash">butternut squash</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="cantaloupe" id="cantaloupe" />
+              <label class="form-check-label text-dark" for="cantaloupe">cantaloupe</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="chives" id="chives" />
+              <label class="form-check-label text-dark" for="chives">chives</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="fig" id="fig" />
+              <label class="form-check-label text-dark" for="fig">fig</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="green bell pepper" id="greenBellPepper" />
+              <label class="form-check-label text-dark" for="greenBellPepper">green bell pepper</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="iceberg lettuce" id="icebergLettuce" />
+              <label class="form-check-label text-dark" for="icebergLettuce">iceberg lettuce</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="jalapeno" id="jalapeno" />
+              <label class="form-check-label text-dark" for="jalapeno">jalapeno</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="kale" id="kale" />
+              <label class="form-check-label text-dark" for="kale">kale</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="leeks" id="leeks" />
+              <label class="form-check-label text-dark" for="leeks">leeks</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="mango" id="mango" />
+              <label class="form-check-label text-dark" for="mango">mango</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+     <div class="col-md-6">
+      <div class="bg-light p-4 rounded h-100" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <h3 class="mb-3 text-dark">Snacks / Sweets / Nuts</h3>
+          <!-- First column of checkboxes -->
+          <div class="col-6">
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="caramel sauce" id="caramelSauce" />
+              <label class="form-check-label text-dark" for="caramelSauce">caramel sauce</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="chocolate" id="chocolate" />
+              <label class="form-check-label text-dark" for="chocolate">chocolate</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="cocoa powder" id="cocoaPowder" />
+              <label class="form-check-label text-dark" for="cocoaPowder">cocoa powder</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="dried cranberries" id="driedCranberries1" />
+              <label class="form-check-label text-dark" for="driedCranberries1">dried cranberries</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="peanut butter" id="peanutButter" />
+              <label class="form-check-label text-dark" for="peanutButter">peanut butter</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="peanuts" id="peanuts" />
+              <label class="form-check-label text-dark" for="peanuts">peanuts</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="pecans" id="pecans" />
+              <label class="form-check-label text-dark" for="pecans">pecans</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="raisins" id="raisins" />
+              <label class="form-check-label text-dark" for="raisins">raisins</label>
+            </div>
+           <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="shredded coconut" id="shreddedCoconut" />
+              <label class="form-check-label text-dark" for="shreddedCoconut">shredded coconut</label>
+            </div>
+           
+          <!-- Second column of checkboxes -->
+          <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="walnuts" id="walnuts" />
+              <label class="form-check-label text-dark" for="walnuts">walnuts</label>
+            </div>
+            <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" name="ingredients" value="almond butter" id="almondButter" />
+            <label class="form-check-label text-dark" for="almondButter">almond butter</label>
+          </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="cashews" id="cashews" />
+              <label class="form-check-label text-dark" for="cashews">cashews</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="chestnuts" id="chestnuts" />
+              <label class="form-check-label text-dark" for="chestnuts">chestnuts</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="coconut flakes" id="coconutFlakes" />
+              <label class="form-check-label text-dark" for="coconutFlakes">coconut flakes</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="croutons" id="croutons" />
+              <label class="form-check-label text-dark" for="croutons">croutons</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="graham crackers" id="grahamCrackers" />
+              <label class="form-check-label text-dark" for="grahamCrackers">graham crackers</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="macadamia nuts" id="macadamiaNuts" />
+              <label class="form-check-label text-dark" for="macadamiaNuts">macadamia nuts</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="marshmallows" id="marshmallows" />
+              <label class="form-check-label text-dark" for="marshmallows">marshmallows</label>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+      <div class="bg-light p-4 rounded h-100" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <h3 class="mb-3 text-dark">Oils &amp; Vinegars</h3>
+        <div class="row">
+          <!-- First column of checkboxes -->
+          <div class="col-6">
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="balsamic vinegar" id="balsamicVinegar" />
+              <label class="form-check-label text-dark" for="balsamicVinegar">balsamic vinegar</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="canola oil" id="canolaOil" />
+              <label class="form-check-label text-dark" for="canolaOil">canola oil</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="coconut oil" id="coconutOil" />
+              <label class="form-check-label text-dark" for="coconutOil">coconut oil</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="corn oil" id="cornOil" />
+              <label class="form-check-label text-dark" for="cornOil">corn oil</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="extra virgin olive oil" id="extraVirginOliveOil" />
+              <label class="form-check-label text-dark" for="extraVirginOliveOil">extra virgin olive oil</label>
+            </div>
+         
+           <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="grapeseed oil" id="grapeseedOil" />
+              <label class="form-check-label text-dark" for="grapeseedOil">grapeseed oil</label>
+            </div>
+          </div>
+
+          <!-- Second column of checkboxes -->
+          <div class="col-6">  
+           <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" name="ingredients" value="olive oil" id="oliveOil" />
+            <label class="form-check-label text-dark" for="oliveOil">olive oil</label>
+          </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="red wine vinegar" id="redWineVinegar" />
+              <label class="form-check-label text-dark" for="redWineVinegar">red wine vinegar</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="sesame oil" id="sesameOil" />
+              <label class="form-check-label text-dark" for="sesameOil">sesame oil</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="sunflower oil" id="sunflowerOil" />
+              <label class="form-check-label text-dark" for="sunflowerOil">sunflower oil</label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="vegetable oil" id="vegetableOil" />
+              <label class="form-check-label text-dark" for="vegetableOil">vegetable oil</label>
+            </div>
+            <div class="form-check mb-4">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="vinegar" id="vinegar" />
+              <label class="form-check-label text-dark" for="vinegar">vinegar</label>
+            </div>
+             <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="ingredients" value="apple cider vinegar" id="appleCiderVinegar" />
+              <label class="form-check-label text-dark" for="appleCiderVinegar">apple cider vinegar</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="bg-light p-4 rounded h-100" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <h3 class="mb-3 text-dark">Seafood</h3>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="shrimp" id="shrimp" />
+          <label class="form-check-label text-dark" for="shrimp">shrimp</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="smoked salmon" id="smokedSalmon" />
+          <label class="form-check-label text-dark" for="smokedSalmon">smoked salmon</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="tuna" id="tuna" />
+          <label class="form-check-label text-dark" for="tuna">tuna</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="anchovies" id="anchovies" />
+          <label class="form-check-label text-dark" for="anchovies">anchovies</label>
+        </div>
+        <div class="form-check mb-4">
+          <input class="form-check-input" type="checkbox" name="ingredients" value="crab" id="crab" />
+          <label class="form-check-label text-dark" for="crab">crab</label>
+        </div>
+      </div>
+    </div>
+
+    </form>
+    
+  {% endblock  %}

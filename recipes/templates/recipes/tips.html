@@ -1,0 +1,822 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_head %}
+<style>
+   .btn-link {
+            text-decoration: none;
+        }
+        .btn-link:focus {
+            outline: 2px solid orange;
+            outline-offset: 2px;
+        }
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+</style>
+{% endblock %}
+{% block content %}
+
+<div class="container mt-4">
+    <h1 class="mb-4 text-center">24 Essential Kitchen Tips</h1>
+    <div class="row g-4">
+        <!-- Card 1 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src= "{% static 'recipes/images/pic1.webp' %}" class="card-img-top" alt="Peel Ginger with a Spoon">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip1">
+                        Peel ginger with a spoon
+                    </button>
+                    <p class="card-text">
+                         Forget the struggle with knives and peelers—when it comes to ginger, a simple spoon is your best tool...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src= "{% static 'recipes/images/pic2.webp' %}" class="card-img-top" alt="Immersion Blender">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip2">
+                        Get an immersion blender
+                    </button>
+                    <p class="card-text">
+                       An immersion blender is one of those small tools that makes a big difference in the kitchen... 
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/pic3.jpg' %}" class="card-img-top" alt="Small Strainer for Citrus">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip3">
+                        Small strainer for citrus
+                    </button>
+                    <p class="card-text">
+                       Next time you squeeze a lemon, lime, or orange, skip fishing out seeds with a spoon—just grab a small strainer...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/pic4.webp' %}" class="card-img-top" alt="Small Strainer for Eggs">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip4">
+                        Small strainer for eggs
+                    </button>
+                    <p class="card-text">
+                       If you’ve ever cracked an egg and noticed how runny parts of the white spread everywhere, here’s a clever way to fix it...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/pic5.jpg' %}" class="card-img-top" alt="Work Clean">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip5">
+                        Think like a factory line, and work clean
+                    </button>
+                    <p class="card-text">
+                     Cooking becomes so much easier—and more enjoyable—when you treat your kitchen like a little assembly line... 
+
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/pic6.webp' %}" class="card-img-top" alt="Garbage Bowl">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip6">
+Keep a dedicated bowl or container on your work surface specifically for scraps, peels, and trimmings as you cook...
+                    </button>
+                    <p class="card-text">
+                      ChatGPT said:
+
+Cooking gets a whole lot smoother when you treat your prep area like a chef’s station—starting with a simple trick for handling scraps.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/pic7.webp' %}" class="card-img-top" alt="Freeze Liquids">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip7">
+                        Freeze liquids in useable portions
+                    </button>
+                    <p class="card-text">
+                      Pour leftover broths, sauces, or stock into muffin tins or ice cube trays for perfectly portioned servings that thaw in minutes...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/pic8.webp' %}" class="card-img-top" alt="Freeze Flat">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip8">
+                        Freeze as flat as possible
+                    </button>
+                    <p class="card-text">
+                                      When freezing soups, sauces, or other liquids, transfer them into resealable freezer bags instead of bulky containers...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 9 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/picss9.jpg' %}" class="card-img-top" alt="Defrost Meat">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip9">
+                        Defrost meat on aluminum trays
+                    </button>
+                    <p class="card-text">
+                       Defrost dinner in record time with a simple trick that uses nothing more than a metal baking sheet.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 10 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/pic10.webp' %}" class="card-img-top" alt="Slice Avocados">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip10">
+                        Slice avocados in their skins
+                    </button>
+                    <p class="card-text">
+                       Instead of peeling an avocado before cutting, try slicing it while it’s still in the skin...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 11 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/pic11.jpg' %}" class="card-img-top" alt="Pre-Peeled Garlic">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip11">
+                        Buy pre-peeled garlic
+                    </button>
+                    <p class="card-text">
+                       If you find yourself spending extra time peeling garlic every time you cook, consider buying pre-peeled garlic cloves...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 12 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/pic12.jpg' %}" class="card-img-top" alt="Read Recipe">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip12">
+                        Read the recipe first
+                    </button>
+                    <p class="card-text">
+                  Before you start cooking, take a few minutes to read the entire recipe from start to finish...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 13 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/pic13.webp' %}" class="card-img-top" alt="Scale for Baking">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip13">
+                        Use a scale for baking
+                    </button>
+                    <p class="card-text">
+                      Measuring ingredients by weight with a kitchen scale is one of the best habits...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 14 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/pic14.webp' %}" class="card-img-top" alt="Microplane">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip14">
+                        The microplane is your friend
+                    </button>
+                    <p class="card-text">
+A microplane grater is a small but mighty tool that can completely change the way you cook...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 15 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/pic15.jpg' %}" class="card-img-top" alt="Vinaigrettes">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip15">
+                        Make your vinaigrettes in squeeze bottles
+                    </button>
+                    <p class="card-text">
+                       Mixing vinaigrettes in squeeze bottles is a simple trick that makes cooking so much easier and cleaner...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 16 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/pic16.jpg' %}" class="card-img-top" alt="Deli Containers">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip16">
+                        Buy deli Containers with matching lids
+                    </button>
+                    <p class="card-text">
+Investing in a set of deli containers with matching lids is a small change that makes a huge difference in the kitchen...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 17 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/pic17.jpg' %}" class="card-img-top" alt="Taste Meat Mixtures">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip17">
+                        Taste meatloaf, meatball, and sausage mixtures before you shape them
+                    </button>
+                    <p class="card-text">
+                                 Always take a moment to cook a small portion of your meat mixture before shaping it into meatloaf, meatballs, or sausages...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 18 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/pic18.webp' %}" class="card-img-top" alt="Freeze Meat Before Cutting">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip18">
+                        Partially freeze meat before cutting
+                    </button>
+                    <p class="card-text">
+                        Partially freezing meat before cutting is a clever hack that makes prep faster, easier, and much neater...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 19 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/pic19.webp' %}" class="card-img-top" alt="Sharp Knives">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip19">
+                        Keep your knives sharp
+                    </button>
+                    <p class="card-text">
+                      Sharp knives are one of the best kitchen hacks for safer, smoother cooking...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 20 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/pic20.jpg' %}" class="card-img-top" alt="Parmesan Rinds">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip20">
+                        Save your parmesan rinds
+                    </button>
+                    <p class="card-text">
+                      Don’t toss those Parmesan rinds—use them as a secret flavor booster in your cooking...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 21 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/pic21.jpg' %}" class="card-img-top" alt="Mozzarella Liquid">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip21">
+                        Use mozzarella or feta liquid as the base for pasta sauce
+                    </button>
+                    <p class="card-text">
+                       The liquid from fresh mozzarella or feta isn’t just something to pour down the drain—it’s a hidden ingredient packed with flavor...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 22 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/pic22.jpg' %}" class="card-img-top" alt="Store Greens">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip22">
+                        Store greens and herbs with a damp paper towel
+                    </button>
+                    <p class="card-text">
+                        To make fresh herbs last longer, give them the right balance of moisture and airflow by wrapping them in damp paper towels before storing them in the fridge...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 23 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/pic23.webp' %}" class="card-img-top" alt="Salt and Acid">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip23">
+                        Don't be afraid of salt, but don't forget the acid
+                    </button>
+                    <p class="card-text">
+                        Balancing salt and acid is one of the simplest cooking hacks for instantly upgrading your food to restaurant quality...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 24 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static 'recipes/images/pic24.jpg' %}" class="card-img-top" alt="Egg Shells">
+                <div class="card-body d-flex flex-column">
+                    <button type="button" class="btn btn-link p-0 mb-2 text-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#modalTip24">
+                        Use egg shells to remove egg shells
+                    </button>
+                    <p class="card-text">
+                        When a piece of eggshell slips into your bowl, the easiest way to fish it out is by using the remaining half of the shell itself.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modals Section -->
+<!-- Modal 1 -->
+<div class="modal fade" id="modalTip1" tabindex="-1" aria-labelledby="modalTip1Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip1Label">Peel Ginger with a Spoon</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Forget the struggle with knives and peelers—when it comes to ginger, a simple spoon is your best tool. By gently scraping the skin, you remove only the thin outer layer while keeping all that fragrant flesh intact. It’s quicker, safer, and reduces waste, making it the easiest way to prep fresh ginger for your cooking.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 2 -->
+<div class="modal fade" id="modalTip2" tabindex="-1" aria-labelledby="modalTip2Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip2Label">Get an Immersion Blender</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                An immersion blender is one of those small tools that makes a big difference in the kitchen. Instead of carefully transferring hot soups or sauces into a countertop blender—risking spills and extra dishes—you can blend everything right in the pot. It’s fast, efficient, and keeps cleanup to a minimum. Beyond soups, it’s also perfect for making smoothies, salad dressings, whipped cream, or even pureeing baby food. Compact and versatile, it’s a go-to gadget for everyday cooking.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 3 -->
+<div class="modal fade" id="modalTip3" tabindex="-1" aria-labelledby="modalTip3Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip3Label">Keep a Small Strainer for Citrus</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Next time you squeeze a lemon, lime, or orange, skip fishing out seeds with a spoon—just grab a small strainer. Holding it over your glass, bowl, or pan lets the juice flow through while neatly catching seeds and pulp, leaving you with smooth, ready-to-use juice every time. It’s a simple trick that saves you from unexpected crunch in your salad dressing or cocktails, and the strainer itself is easy to rinse and store...
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 4 -->
+<div class="modal fade" id="modalTip4" tabindex="-1" aria-labelledby="modalTip4Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip4Label">Use that Same Small Strainer for Eggs</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              If you’ve ever cracked an egg and noticed how runny parts of the white spread everywhere, here’s a clever way to fix it. Simply crack your eggs into a fine strainer held over the sink or a bowl, then gently swirl them around. The thin, watery portion of the egg white will drain through, leaving behind the thicker, firmer whites along with the yolk. These concentrated whites are ideal for poaching, frying, or baking because they hold their shape better and give you a cleaner, more professional result.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 5 -->
+<div class="modal fade" id="modalTip5" tabindex="-1" aria-labelledby="modalTip5Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip5Label">Think Like a Factory Line, and Work Clean</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Cooking becomes so much easier—and more enjoyable—when you treat your kitchen like a little assembly line. Before you even turn on the stove, take a few minutes to prep your ingredients, measure out spices, and gather the tools you’ll need.As you move along, clean up bowls, cutting boards, and utensils right after you use them. Not only does this keep your workspace neat and efficient, but it also saves you from facing a mountain of dishes once the meal is done.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 6 -->
+<div class="modal fade" id="modalTip6" tabindex="-1" aria-labelledby="modalTip6Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip6Label">Use a Garbage Bowl and a Bench Scraper</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               Keep a dedicated bowl or container on your work surface specifically for scraps, peels, and trimmings as you cook. Instead of leaving onion skins, carrot tops, or eggshells scattered across your cutting board, use a bench scraper or the flat side of your knife to sweep them neatly into the bowl. This simple habit keeps your workspace clear and uncluttered, giving you more room to work efficiently. At the end of your prep, you can quickly empty the bowl into the trash, compost, or stock pot if you plan to reuse vegetable scraps.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 7 -->
+<div class="modal fade" id="modalTip7" tabindex="-1" aria-labelledby="modalTip7Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip7Label">Freeze Liquids in Usable Portions</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Pour leftover broths, sauces, or stock into muffin tins or ice cube trays for perfectly portioned servings that thaw in minutes. You can even fill trays with olive oil and fresh herbs to create ready-to-use cooking cubes—just pop one into a pan for instant aroma and taste. No waste, no hassle, and a burst of flavor every time.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 8 -->
+<div class="modal fade" id="modalTip8" tabindex="-1" aria-labelledby="modalTip8Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip8Label">Freeze as Flat as Possible</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               When freezing soups, sauces, or other liquids, transfer them into resealable freezer bags instead of bulky containers. Lay the bags flat on a baking sheet while they freeze — this allows the liquid to spread out in a thin, even layer. Because the surface area is greater, the contents freeze much more quickly and evenly, which helps preserve freshness and flavor. Once frozen solid, you can stand the bags upright or stack them like files, making the most of your freezer space and keeping things organized.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 9 -->
+<div class="modal fade" id="modalTip9" tabindex="-1" aria-labelledby="modalTip9Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip9Label">Defrost Meat on Aluminum Trays</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Aluminum conducts heat well, so placing frozen meat on a metal baking sheet helps it thaw faster than on plastic or wood. Just flip halfway through. It's a safe, passive way to speed things up.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 10 -->
+<div class="modal fade" id="modalTip10" tabindex="-1" aria-labelledby="modalTip10Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip10Label">Slice Avocados in Their Skins</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               Instead of peeling an avocado before cutting, try slicing it while it’s still in the skin. First, cut the avocado in half and remove the pit. Then, using a small knife, make gentle slices or wedges directly into the flesh without breaking through the peel. When you’re ready, simply run a spoon between the skin and the flesh to lift the pieces out cleanly. This method keeps your hands from getting slippery, reduces mess on your cutting board, and helps protect the soft avocado flesh from being squashed.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 11 -->
+<div class="modal fade" id="modalTip11" tabindex="-1" aria-labelledby="modalTip11Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip11Label">Buy Pre-Peeled Garlic</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              If you find yourself spending extra time peeling garlic every time you cook, consider buying pre-peeled garlic cloves. These come ready to use and can be stored in the refrigerator, making them a convenient option for busy weeknights or when you’re cooking larger meals. With the peeling step already done, you can quickly mince, slice, or crush the cloves as needed, saving valuable prep time without sacrificing that bold, fresh garlic flavor.
+            </div>
+              <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 12 -->
+<div class="modal fade" id="modalTip12" tabindex="-1" aria-labelledby="modalTip12Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip12Label">Read the Recipe First</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Before you start cooking, take a few minutes to read the entire recipe from start to finish. This simple step helps you understand the overall process, anticipate tricky parts, and identify any ingredients or equipment you might be missing. By knowing what comes next, you can plan your prep work, measure ingredients, and organize your workspace efficiently. Reading the recipe ahead of time also helps prevent mistakes, such as adding ingredients in the wrong order or realizing halfway through that you need something you don’t have.
+           </div>
+              <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 13 -->
+<div class="modal fade" id="modalTip13" tabindex="-1" aria-labelledby="modalTip13Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip13Label">Use a Scale for Baking</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               Measuring ingredients by weight with a kitchen scale is one of the best habits you can develop in baking. Unlike scooping with cups, which can pack flour too tightly or leave you with uneven amounts, weighing ensures total precision every single time. Even small differences in flour, sugar, or butter can change the texture of your cookies, cakes, or bread.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 14 -->
+<div class="modal fade" id="modalTip14" tabindex="-1" aria-labelledby="modalTip14Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip14Label">The Microplane is Your Friend</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              A microplane grater is a small but mighty tool that can completely change the way you cook. It’s perfect for zesting citrus fruits, releasing all those fragrant essential oils that add a burst of brightness to desserts, dressings, and marinades. Beyond citrus, it’s ideal for finely grating hard cheeses like Parmesan, creating delicate, fluffy shreds that melt beautifully over pasta or risotto.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 15 -->
+<div class="modal fade" id="modalTip15" tabindex="-1" aria-labelledby="modalTip15Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip15Label">Make Your Vinaigrettes in Squeeze Bottles</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Mixing vinaigrettes in squeeze bottles is a simple trick that makes cooking so much easier and cleaner. Instead of whisking ingredients in a bowl and dealing with splatters, just add your oil, vinegar, and seasonings straight into a squeeze bottle, screw on the lid, and give it a good shake. In seconds, you’ll have a perfectly blended dressing ready to use.
+            </div>
+              <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 16 -->
+<div class="modal fade" id="modalTip16" tabindex="-1" aria-labelledby="modalTip16Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip16Label">Buy Deli Containers with Matching Lids</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Investing in a set of deli containers with matching lids is a small change that makes a huge difference in the kitchen. These lightweight, durable containers are perfect for storing leftovers, prepped ingredients, or even homemade sauces and soups. Because they all come in standard sizes with interchangeable lids, you’ll never have to waste time digging through a messy drawer trying to find the right top for the right container.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 17 -->
+<div class="modal fade" id="modalTip17" tabindex="-1" aria-labelledby="modalTip17Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip17Label">Taste Meat Mixtures Before Shaping</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Always take a moment to cook a small portion of your meat mixture before shaping it into meatloaf, meatballs, or sausages. This simple step is like a built-in taste test, allowing you to check the seasoning and adjust as needed before committing to the whole batch. Raw meat mixtures can be tricky—you never really know if you’ve added just the right amount of salt, herbs, or spices until it’s cooked.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 18 -->
+<div class="modal fade" id="modalTip18" tabindex="-1" aria-labelledby="modalTip18Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip18Label">Partially Freeze Meat Before Cutting</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               Partially freezing meat before cutting is a clever hack that makes prep faster, easier, and much neater. By chilling the meat in the freezer for about 20–30 minutes, it firms up just enough to slice with precision, without turning rock solid. This trick is especially useful when you need thin, even strips for stir-fries, fajitas, or sandwiches, or perfectly uniform cubes for stews and kebabs.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 19 -->
+<div class="modal fade" id="modalTip19" tabindex="-1" aria-labelledby="modalTip19Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip19Label">Keep Your Knives Sharp</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+             Sharp knives are one of the best kitchen hacks for safer, smoother cooking.A properly sharpened blade glides through ingredients with minimal effort, giving you clean, even cuts whether you’re dicing onions, slicing meat, or chopping herbs. Dull knives, on the other hand, force you to push harder, which actually increases the risk of slipping and cutting yourself—not to mention they crush food instead of slicing it neatly.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 20 -->
+<div class="modal fade" id="modalTip20" tabindex="-1" aria-labelledby="modalTip20Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip20Label">Save Your Parmesan Rinds</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Don’t toss those Parmesan rinds—use them as a secret flavor booster in your cooking. When simmered in soups, sauces, or stews, the rind slowly releases a deep, nutty, savory richness that infuses the entire dish. It’s like unlocking a hidden layer of umami that you just can’t get from salt alone. Toss one into a pot of minestrone, a tomato sauce, or even a hearty stew, and let it work its magic as everything cooks.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 21 -->
+<div class="modal fade" id="modalTip21" tabindex="-1" aria-labelledby="modalTip21Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip21Label">Use Mozzarella or Feta Liquid</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               The liquid from fresh mozzarella or feta isn’t just something to pour down the drain—it’s a hidden ingredient packed with flavor. Brimming with tangy, salty, and slightly creamy notes, it can instantly elevate your dishes without any extra effort. Use it as a base for pasta sauces to give them silky richness, whisk it into salad dressings for a bright, flavorful punch, or add it to marinades to tenderize and infuse vegetables, chicken, or fish.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 22 -->
+<div class="modal fade" id="modalTip22" tabindex="-1" aria-labelledby="modalTip22Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip22Label">Store Greens and Herbs with Paper Towels</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               To make fresh herbs last longer, give them the right balance of moisture and airflow by wrapping them in damp paper towels before storing them in the fridge. The gentle layer of dampness keeps the herbs hydrated, while the paper towel prevents excess water from pooling, which can cause sogginess and spoilage. Slip the wrapped bundle into a reusable bag or container, and you’ll notice parsley, cilantro, mint, and other delicate herbs stay vibrant and fragrant for days—sometimes even weeks—longer than usual.
+            </div>
+               <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 23 -->
+<div class="modal fade" id="modalTip23" tabindex="-1" aria-labelledby="modalTip23Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip23Label">Balance Salt and Acid</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Balancing salt and acid is one of the simplest cooking hacks for instantly upgrading your food to restaurant quality. Salt brings out and deepens flavors, but acid—like lemon juice, lime, or vinegar—adds brightness and lift, preventing dishes from tasting flat or heavy. Together, they create harmony, making flavors pop in a way that feels both fresh and satisfying. Think of a squeeze of lemon over grilled fish, a splash of vinegar in a rich stew, or a dash of lime on tacos—each transforms the dish from good to unforgettable.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 24 -->
+<div class="modal fade" id="modalTip24" tabindex="-1" aria-labelledby="modalTip24Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTip24Label">Use Egg Shells to Remove Egg Shells</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">When a piece of eggshell slips into your bowl, the easiest way to fish it out is by using the remaining half of the shell itself. The firm, sharp edges naturally cut through the egg whites and attract those slippery fragments far better than your fingers or a spoon ever could. Instead of chasing the tiny shard around in frustration, just dip the shell in and watch how easily it scoops the piece up. When you get eggshell in your bowl, use the remaining half shell to scoop it out. The sharp edges of the shell attract small fragments better than fingers or spoons.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+{% endblock %}
